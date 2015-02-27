@@ -4,13 +4,15 @@ import android.animation.AnimatorInflater;
 import android.animation.StateListAnimator;
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
 import android.util.StateSet;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 /**
  * <p>
@@ -85,11 +87,9 @@ public  class SwappingHolder extends MultiSelectorBindingHolder implements Selec
         TypedValue typedValue = new TypedValue();
         Resources.Theme theme = context.getTheme();
         theme.resolveAttribute(R.attr.colorAccent, typedValue, true);
-        GradientDrawable raise= new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,new int[]{typedValue.data,
-                typedValue.data,typedValue.data,typedValue.data, typedValue.data,typedValue.data, typedValue.data,typedValue.data,0x70333333});
-        raise.setAlpha(0);
+        ColorDrawable colorDrawable= new ColorDrawable(typedValue.data);
         StateListDrawable stateListDrawable = new StateListDrawable();
-        stateListDrawable.addState(new int[]{android.R.attr.state_activated}, raise);
+        stateListDrawable.addState(new int[]{android.R.attr.state_activated}, colorDrawable);
         stateListDrawable.addState(StateSet.WILD_CARD, null);
 
         return stateListDrawable;
@@ -240,7 +240,12 @@ public  class SwappingHolder extends MultiSelectorBindingHolder implements Selec
      * @param isActivated True to activate the view.
      */
     public void setActivated(boolean isActivated) {
+        if(Build.VERSION.SDK_INT<Build.VERSION_CODES.LOLLIPOP && isActivated){
+            Animation animation= AnimationUtils.loadAnimation(itemView.getContext(),R.anim.raise_prelolipop);
+           itemView.startAnimation(animation);
+        }
         itemView.setActivated(isActivated);
+
     }
 
     /**
