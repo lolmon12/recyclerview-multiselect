@@ -11,6 +11,8 @@ import android.os.Build;
 import android.util.StateSet;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 /**
  * <p>
@@ -239,7 +241,12 @@ public  class SwappingHolder extends MultiSelectorBindingHolder implements Selec
      * @param isActivated True to activate the view.
      */
     public void setActivated(boolean isActivated) {
+        if(Build.VERSION.SDK_INT<Build.VERSION_CODES.LOLLIPOP && isActivated){
+            Animation animation= AnimationUtils.loadAnimation(itemView.getContext(),R.anim.raise_prelolipop);
+           itemView.startAnimation(animation);
+        }
         itemView.setActivated(isActivated);
+
     }
 
     /**
