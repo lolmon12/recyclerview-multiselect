@@ -144,6 +144,19 @@ public  class SwappingHolder extends MultiSelectorBindingHolder implements Selec
     }
 
     /**
+     * <p>Set the background color to use when not in selection mode.</p>
+     *
+     * @param resId A color resource id.
+     */
+    public void setDefaultModeBackgroundColor(int resId) {
+        ColorDrawable colorDrawable = new ColorDrawable(itemView.getContext().getResources().getColor(resId));
+        StateListDrawable stateListDrawable = new StateListDrawable();
+        stateListDrawable.addState(new int[]{android.R.attr.state_activated}, colorDrawable);
+        stateListDrawable.addState(StateSet.WILD_CARD, (Drawable)null);
+        setDefaultModeBackgroundDrawable(stateListDrawable);
+    }
+
+    /**
      * <p>Set the background drawable to use when not in selection mode.</p>
      *
      * @param defaultModeBackgroundDrawable A background drawable
