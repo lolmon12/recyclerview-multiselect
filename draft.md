@@ -61,33 +61,7 @@ Create a ViewHolder that subclasses SwappingHolder (1). MultiSelector works thro
 
 It is also up to you to notify MultiSelector when an item is clicked during selection mode. However, you will want to notify MultiSelector only during selection mode. When not in selection mode you can handle item clicks normally. 
 
-```
-private class MyViewHolder extends SwappingHolder implements View.OnClickListener {
-
-    public MyViewHolder(View itemView) {
-        super(itemView, mMultiSelector);
-    }
-
-    @Override
-    public void onClick(View view) {
-        if (mMultiSelector.isSelectable()) { // (1)
-            boolean isSelected = 
-                    mMultiSelector.isSelected(MyViewHolder.this.getAdapterPosition(), 
-                            MyViewHolder.this.getItemId()); // (2)
-            
-            mMultiSelector.setSelected(MyViewHolder.this, !isSelected); // (3)
-            
-        } else { // (4)
-            // do whatever we want to do when not in selection mode
-            // perhaps navigate to a detail screen
-        }
-    }
-}
-```
-If in selection mode (1), get the current state (2), and toggle it (3). If not in selection mode (4), perform the normal action.
-
-
-Instead of performing steps 1-3 above, this library provides a convenience method called tapSelection(). If in selection mode, this method will toggle the selected state of an item and return true. If not in selection mode this method returns false. So the above code can be reduce to: 
+This library provides a convenience method called tapSelection(). If MultiSelector is in selection mode, this method will toggle the selected state of an item and return true. If MultiSelector is not in selection mode this method returns false.
 
 ```
 private class MyViewHolder extends SwappingHolder implements View.OnClickListener {
