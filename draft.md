@@ -6,7 +6,7 @@ RecyclerView MultiSelect is a tool to help implement single or multichoice selec
 
 ## Overview
 
-TODO add animated GIF
+![multiselect sample](multiselect_sample.gif)
 
 
 ### Basics
@@ -195,8 +195,7 @@ To use single selection instead of multiselect, use SingleSelector instead of Mu
 private MultiSelector mMultiSelector = new SingleSelector();
 ```
 
-TODO ADD ANIMATED GIF	
-
+![single select sample](singleselect_sample.gif)
 
 ## Customizing Selection Visuals 
 
@@ -212,7 +211,7 @@ public void setDefaultModeStateListAnimator(int resId);
 
 The state list animator setters are safe to call prior to API 21, and will result in a no-op.
 
-### Off label customization
+### Off Label Customization
 
 If you need to customize what the selected states look like beyond what SwappingHolder offers, you can extend the MultiSelectorBindingHolder abstract class to respond to selection events:
 
@@ -271,6 +270,7 @@ compile ''com.bignerdranch.android:recyclerview-multiselect:0.2'
 
 
 ##Contributing
-
+TODO
 
 ##License
+TODO
