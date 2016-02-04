@@ -229,7 +229,7 @@ It requires a bit more code: you will need to bind your ViewHolder to the MultiS
 **Gradle**
 
 ```
-compile ''com.bignerdranch.android:recyclerview-multiselect:0.2'
+compile 'com.bignerdranch.android:recyclerview-multiselect:0.2'
 ```
 
 **Maven**
