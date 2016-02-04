@@ -1,4 +1,4 @@
-#RecylerView Multiselect
+#RecylerView MultiSelect
 RecyclerView MultiSelect is a tool to help implement single or multichoice selection on RecyclerView items. It does not provide the same interface as ListView's setChoiceMode(), but can do everything setChoiceMode() does. It is also small with a limited set of responsibilities, which means it should be suitable for coercing into off label uses.
 
 
