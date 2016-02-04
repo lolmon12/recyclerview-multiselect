@@ -4,8 +4,12 @@ RecyclerView MultiSelect is a tool to help implement single or multichoice selec
 
 <a href="http://www.methodscount.com/?lib=com.bignerdranch.android%3Arecyclerview-multiselect%3A%2B"><img src="https://img.shields.io/badge/Methods and size-core: 118 | deps: 14762 | 23 KB-e91e63.svg"></img></a>
 
+## Overview
 
-### Basic Usage
+TODO add animated GIF
+
+
+### Basics
 
 The MultiSelector is the core object that manages multi-selection. However, you have to tell MultiSelector when to enter/leave selection mode.
 
@@ -183,29 +187,90 @@ private ModalMultiSelectorCallback mActionModeCallback
 
 We can access each selected item (1) to remove it from our list. We also need to clear selection when finished removing all items (2).
 
+### Single Selection
+
+To use single selection instead of multiselect, use SingleSelector instead of MultiSelector:
+
+```
+private MultiSelector mMultiSelector = new SingleSelector();
+```
+
+TODO ADD ANIMATED GIF	
+
+
+## Customizing Selection Visuals 
+
+SwappingHolder uses two sets of drawables and state list animators for its itemView: one while in the default mode, and one while in selection mode. You can customize these by calling one of the various setters:
+
+```
+public void setSelectionModeBackgroundDrawable(Drawable drawable);
+public void setDefaultModeBackgroundDrawable(Drawable drawable);
+
+public void setSelectionModeStateListAnimator(int resId);
+public void setDefaultModeStateListAnimator(int resId);
+```
+
+The state list animator setters are safe to call prior to API 21, and will result in a no-op.
+
+### Off label customization
+
+If you need to customize what the selected states look like beyond what SwappingHolder offers, you can extend the MultiSelectorBindingHolder abstract class to respond to selection events:
+
+```
+public class MyCustomHolder extends MultiSelectorBindingHolder {
+    @Override
+    public void setSelectable(boolean selectable) { ... }
+
+    @Override
+    public boolean isSelectable() { ... }
+
+    @Override
+    public void setActivated(boolean activated) { ... }
+
+    @Override
+    public boolean isActivated() { ... }
+}
+```
+
+If that's still too restrictive, you can implement the SelectableHolder interface instead:
+
+public interface SelectableHolder {
+    void setSelectable(boolean selectable);
+    boolean isSelectable();
+
+    void setActivated(boolean activated);
+    boolean isActivated();
+
+    int getAdapterPosition();
+    long getItemId();
+}
+
+It requires a bit more code: you will need to bind your ViewHolder to the MultiSelector by calling MultiSelector.bindHolder() every time your view holder is bound to a different item. On the other hand, though, your implementation doesn't even necessarily have to be hooked up to a RecyclerView, and neither does your MultiSelector. I have no idea how useful that is to anyone, but there you go.
+
+
 
 ##Download
 
-[v2.0.4 AAR](http://repo1.maven.org/maven2/com/bignerdranch/android/expandablerecyclerview/2.0.4/expandablerecyclerview-2.0.4.aar)
+[v0.2 AAR](http://central.maven.org/maven2/com/bignerdranch/android/recyclerview-multiselect/0.2/recyclerview-multiselect-0.2.aar)
 
 **Gradle**
 
 ```
-compile 'com.bignerdranch.android:expandablerecyclerview:2.0.4'
+compile ''com.bignerdranch.android:recyclerview-multiselect:0.2'
 ```
 
 **Maven**
 
 ```
 <dependency>
-  <groupId>com.bignerdranch.android</groupId>
-  <artifactId>expandablerecyclerview</artifactId>
-  <version>2.0.4</version>
+	<groupId>com.bignerdranch.android</groupId>
+	<artifactId>recyclerview-multiselect</artifactId>
+	<version>0.2</version>
 </dependency>
 ```
 
 
-## Contributing
+##Contributing
 
 
 ##License
