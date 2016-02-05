@@ -219,18 +219,16 @@ public void setDefaultModeStateListAnimator(int resId);
 
 <p>If that's still too restrictive, you can implement the SelectableHolder interface instead:</p>
 
-<p>public interface SelectableHolder {
+<pre><code>public interface SelectableHolder {
     void setSelectable(boolean selectable);
-    boolean isSelectable();</p>
+    boolean isSelectable();
 
-<pre><code>void setActivated(boolean activated);
-boolean isActivated();
+    void setActivated(boolean activated);
+    boolean isActivated();
 
-int getAdapterPosition();
-long getItemId();
-</code></pre>
-
-<p>}</p>
+    int getAdapterPosition();
+    long getItemId();
+}</code></pre>
 
 <p>It requires a bit more code: you will need to bind your ViewHolder to the MultiSelector by calling MultiSelector.bindHolder() every time your view holder is bound to a different item. On the other hand, though, your implementation doesn't even necessarily have to be hooked up to a RecyclerView, and neither does your MultiSelector. I have no idea how useful that is to anyone, but there you go.</p>
 
@@ -256,7 +254,7 @@ long getItemId();
 <h2>
 <a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Documentation</h2>
 
-<p>visit the <a href="/javadocs">java docs</a></p>
+<p>visit the <a href="/javadocs">JavaDocs</a></p>
 
 <h2>
 <a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contributing</h2>
@@ -298,8 +296,7 @@ SOFTWARE.
 </code></pre>
       </section>
       <footer>
-          <p><img src="bnr_logo.png"
-        <p>This project is maintained by <a href="https://github.com/bignerdranch">Big Nerd Ranch</a></p>
+        <p><a href="https://github.com/bignerdranch"><img src="bnr_horizontal_logo_250.png"/></a></p>
         <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
       </footer>
     </div>
