@@ -7,7 +7,7 @@ To import, add the following line to your build.gradle:
 
     compile 'com.bignerdranch.android:recyclerview-multiselect:+'
 
-You can find Javadocs [here](javadocs/).
+You can find Javadocs [here](http://bignerdranch.github.io/recyclerview-multiselect/javadocs/).
 
 ## Basics
 
@@ -82,7 +82,8 @@ To get the same effect as CHOICE\_MODE\_MULTIPLE\_MODAL, you can either write yo
 
         @Override
         public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-            getActivity().getMenuInflater().inflate(R.menu.crime_list_item_context, menu);
+            super.onCreateActionMode(actionMode, Menu menu);
+	     getActivity().getMenuInflater().inflate(R.menu.crime_list_item_context, menu);
             return true;
         }
 
@@ -114,7 +115,7 @@ ModalMultiSelectorCallback will call MultiSelector.setSelectable(true) and clear
 
         @Override
         public boolean onLongClick(View v) {
-            ActionBarActivity activity = (ActionBarActivity)getActivity();
+            AppCompatActivity activity = (AppCompatActivity)getActivity();
             activity.startSupportActionMode(mDeleteMode);
             mMultiSelector.setSelected(this, true);
             return true;
@@ -160,7 +161,7 @@ If that's still too restrictive, you can implement the SelectableHolder interfac
         void setActivated(boolean activated);
         boolean isActivated();
 
-        int getPosition();
+        int getAdapterPosition();
         long getItemId();
     }
 
