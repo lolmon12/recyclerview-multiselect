@@ -60,7 +60,7 @@ public class MultiSelector {
      */
     public void setSelectable(boolean isSelectable) {
         mIsSelectable = isSelectable;
-        refreshAllHolders();
+        refreshAllHolders(true);
     }
 
     /**
@@ -86,7 +86,7 @@ public class MultiSelector {
      */
     public void setSelected(int position, long id, boolean isSelected) {
         mSelections.put(position, isSelected);
-        refreshHolder(mTracker.getHolder(position));
+        refreshHolder(mTracker.getHolder(position), true);
     }
 
     /**
@@ -106,7 +106,7 @@ public class MultiSelector {
      */
     public void clearSelections() {
         mSelections.clear();
-        refreshAllHolders();
+        refreshAllHolders(true);
     }
 
     /**
@@ -139,7 +139,7 @@ public class MultiSelector {
      */
     public void bindHolder(SelectableHolder holder, int position, long id) {
         mTracker.bindHolder(holder, position);
-         refreshHolder(holder);
+         refreshHolder(holder, false);
     }
 
     /**
@@ -185,20 +185,20 @@ public class MultiSelector {
 
     }
 
-    public void refreshAllHolders() {
+    public void refreshAllHolders(boolean animate) {
         for (SelectableHolder holder : mTracker.getTrackedHolders()) {
-            refreshHolder(holder);
+            refreshHolder(holder, animate);
         }
     }
 
-    private void refreshHolder(SelectableHolder holder) {
+    private void refreshHolder(SelectableHolder holder, boolean animate) {
         if (holder == null) {
             return;
         }
         holder.setSelectable(mIsSelectable);
 
         boolean isActivated = mSelections.get(holder.getAdapterPosition());
-        holder.setActivated(isActivated);
+        holder.setActivated(isActivated, animate);
     }
 
 
@@ -235,7 +235,7 @@ public class MultiSelector {
             position = selected.get(i);
             mSelections.put(position, true);
         }
-        refreshAllHolders();
+        refreshAllHolders(false);
     }
 
 

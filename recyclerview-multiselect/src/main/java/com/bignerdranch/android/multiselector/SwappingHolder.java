@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
+import android.util.Log;
 import android.util.StateSet;
 import android.util.TypedValue;
 import android.view.View;
@@ -228,8 +229,9 @@ public  class SwappingHolder extends MultiSelectorBindingHolder implements Selec
      * Calls through to {@link android.view.View#isActivated()} on {@link #itemView}.
      *
      * @param isActivated True to activate the view.
+     * @param animate     True if activation was result of user action and can be animated.
      */
-    public void setActivated(boolean isActivated) {
+    public void setActivated(boolean isActivated, boolean animate) {
         itemView.setActivated(isActivated);
     }
 
