@@ -11,6 +11,8 @@ import android.os.Build;
 import android.util.StateSet;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 /**
  * <p>
@@ -78,9 +80,7 @@ public  class SwappingHolder extends MultiSelectorBindingHolder implements Selec
         TypedValue typedValue = new TypedValue();
         Resources.Theme theme = context.getTheme();
         theme.resolveAttribute(R.attr.colorAccent, typedValue, true);
-
-        Drawable colorDrawable = new ColorDrawable(typedValue.data);
-
+        ColorDrawable colorDrawable= new ColorDrawable(typedValue.data);
         StateListDrawable stateListDrawable = new StateListDrawable();
         stateListDrawable.addState(new int[]{android.R.attr.state_activated}, colorDrawable);
         stateListDrawable.addState(StateSet.WILD_CARD, null);
@@ -117,6 +117,7 @@ public  class SwappingHolder extends MultiSelectorBindingHolder implements Selec
 
         if (mIsSelectable) {
             itemView.setBackgroundDrawable(selectionModeBackgroundDrawable);
+
         }
     }
 
@@ -256,7 +257,12 @@ public  class SwappingHolder extends MultiSelectorBindingHolder implements Selec
      * @param isActivated True to activate the view.
      */
     public void setActivated(boolean isActivated) {
+        if(Build.VERSION.SDK_INT<Build.VERSION_CODES.LOLLIPOP && isActivated){
+            Animation animation= AnimationUtils.loadAnimation(itemView.getContext(),R.anim.raise_prelolipop);
+           itemView.startAnimation(animation);
+        }
         itemView.setActivated(isActivated);
+
     }
 
     /**
