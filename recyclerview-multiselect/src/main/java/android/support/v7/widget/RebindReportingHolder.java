@@ -2,6 +2,8 @@ package android.support.v7.widget;
 
 import android.view.View;
 
+import static android.support.v7.widget.RecyclerView.ItemAnimator.FLAG_CHANGED;
+
 /**
  * ViewHolder with a callback for when it is rebound.
  *

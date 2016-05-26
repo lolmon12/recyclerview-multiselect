@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.util.StateSet;
 import android.util.TypedValue;
 import android.view.View;
@@ -116,7 +117,7 @@ public  class SwappingHolder extends MultiSelectorBindingHolder implements Selec
         mSelectionModeBackgroundDrawable = selectionModeBackgroundDrawable;
 
         if (mIsSelectable) {
-            itemView.setBackgroundDrawable(selectionModeBackgroundDrawable);
+            itemView.setBackground(selectionModeBackgroundDrawable);
 
         }
     }
@@ -127,7 +128,7 @@ public  class SwappingHolder extends MultiSelectorBindingHolder implements Selec
      * @param resId A color resource id.
      */
     public void setSelectionModeBackgroundColor(int resId) {
-        ColorDrawable colorDrawable = new ColorDrawable(itemView.getContext().getResources().getColor(resId));
+        ColorDrawable colorDrawable = new ColorDrawable(ContextCompat.getColor(itemView.getContext(),resId));
         StateListDrawable stateListDrawable = new StateListDrawable();
         stateListDrawable.addState(new int[]{android.R.attr.state_activated}, colorDrawable);
         stateListDrawable.addState(StateSet.WILD_CARD, (Drawable)null);
@@ -150,7 +151,7 @@ public  class SwappingHolder extends MultiSelectorBindingHolder implements Selec
      * @param resId A color resource id.
      */
     public void setDefaultModeBackgroundColor(int resId) {
-        ColorDrawable colorDrawable = new ColorDrawable(itemView.getContext().getResources().getColor(resId));
+        ColorDrawable colorDrawable = new ColorDrawable(ContextCompat.getColor(itemView.getContext(),resId));
         StateListDrawable stateListDrawable = new StateListDrawable();
         stateListDrawable.addState(new int[]{android.R.attr.state_activated}, colorDrawable);
         stateListDrawable.addState(StateSet.WILD_CARD, (Drawable)null);
@@ -166,7 +167,7 @@ public  class SwappingHolder extends MultiSelectorBindingHolder implements Selec
         mDefaultModeBackgroundDrawable = defaultModeBackgroundDrawable;
 
         if (!mIsSelectable) {
-            itemView.setBackgroundDrawable(mDefaultModeBackgroundDrawable);
+            itemView.setBackground(mDefaultModeBackgroundDrawable);
         }
     }
 
@@ -298,7 +299,7 @@ public  class SwappingHolder extends MultiSelectorBindingHolder implements Selec
     private void refreshChrome() {
         Drawable backgroundDrawable = mIsSelectable ? mSelectionModeBackgroundDrawable
                 : mDefaultModeBackgroundDrawable;
-        itemView.setBackgroundDrawable(backgroundDrawable);
+        itemView.setBackground(backgroundDrawable);
         if (backgroundDrawable != null) {
             backgroundDrawable.jumpToCurrentState();
         }
