@@ -22,9 +22,8 @@ public interface SelectableHolder {
      * <p>Set this item to be selected (the activated state, for Views and Drawables)</p>
      *
      * @param activated True if selected/activated.
-     * @param animate   True, if activation was result of user action and can be animated
      */
-    void setActivated(boolean activated, boolean animate);
+    void setActivated(boolean activated);
 
     /**
      * <p>Return true if the item is selected/activated.</p>

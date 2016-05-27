@@ -9,8 +9,6 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
->>>>>>> animation/animation-support
 import android.util.StateSet;
 import android.util.TypedValue;
 import android.view.View;
@@ -83,9 +81,7 @@ public  class SwappingHolder extends MultiSelectorBindingHolder implements Selec
         TypedValue typedValue = new TypedValue();
         Resources.Theme theme = context.getTheme();
         theme.resolveAttribute(R.attr.colorAccent, typedValue, true);
-
-        Drawable colorDrawable = new ColorDrawable(typedValue.data);
-
+        ColorDrawable colorDrawable= new ColorDrawable(typedValue.data);
         StateListDrawable stateListDrawable = new StateListDrawable();
         stateListDrawable.addState(new int[]{android.R.attr.state_activated}, colorDrawable);
         stateListDrawable.addState(StateSet.WILD_CARD, null);
@@ -121,7 +117,8 @@ public  class SwappingHolder extends MultiSelectorBindingHolder implements Selec
         mSelectionModeBackgroundDrawable = selectionModeBackgroundDrawable;
 
         if (mIsSelectable) {
-            itemView.setBackgroundDrawable(selectionModeBackgroundDrawable);
+            itemView.setBackground(selectionModeBackgroundDrawable);
+
         }
     }
 
@@ -170,7 +167,7 @@ public  class SwappingHolder extends MultiSelectorBindingHolder implements Selec
         mDefaultModeBackgroundDrawable = defaultModeBackgroundDrawable;
 
         if (!mIsSelectable) {
-            itemView.setBackgroundDrawable(mDefaultModeBackgroundDrawable);
+            itemView.setBackground(mDefaultModeBackgroundDrawable);
         }
     }
 
@@ -259,16 +256,12 @@ public  class SwappingHolder extends MultiSelectorBindingHolder implements Selec
      * Calls through to {@link android.view.View#isActivated()} on {@link #itemView}.
      *
      * @param isActivated True to activate the view.
-     * @param animate     True if activation was result of user action and can be animated.
      */
-    public void setActivated(boolean isActivated, boolean animate) {
+    public void setActivated(boolean isActivated) {
         if(Build.VERSION.SDK_INT<Build.VERSION_CODES.LOLLIPOP && isActivated){
             Animation animation= AnimationUtils.loadAnimation(itemView.getContext(),R.anim.raise_prelolipop);
            itemView.startAnimation(animation);
         }
-=======
-    public void setActivated(boolean isActivated, boolean animate) {
->>>>>>> animation/animation-support
         itemView.setActivated(isActivated);
 
     }
@@ -306,7 +299,7 @@ public  class SwappingHolder extends MultiSelectorBindingHolder implements Selec
     private void refreshChrome() {
         Drawable backgroundDrawable = mIsSelectable ? mSelectionModeBackgroundDrawable
                 : mDefaultModeBackgroundDrawable;
-        itemView.setBackgroundDrawable(backgroundDrawable);
+        itemView.setBackground(backgroundDrawable);
         if (backgroundDrawable != null) {
             backgroundDrawable.jumpToCurrentState();
         }
